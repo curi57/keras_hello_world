@@ -20,16 +20,10 @@ fashion_mnist = keras.datasets.fashion_mnist
 class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat', 'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
 
 print(train_images.shape)
-
 print(len(train_labels))
-
 print(train_labels)
-print(f"CLASS: {train_labels[1]}")
-
 print(test_images.shape)
-
 print(len(test_labels))
-
 
 plt.figure()
 plt.imshow(train_images[1])
@@ -130,8 +124,23 @@ for i in range(num_images):
   plot_value_array(i, predictions, test_labels)
 plt.show()
 
+# Grab an image from the test dataset.
+img = test_images[0]
 
+print(img.shape)
 
+# Adiciona a imagem em um batch que possui um só membro.
+img = (np.expand_dims(img,0))
 
+print(img.shape)
+
+predictions_single = model.predict(img)
+
+print(predictions_single)
+
+plot_value_array(0, predictions_single, test_labels)
+_ = plt.xticks(range(10), class_names, rotation=45)
+
+np.argmax(predictions_single[0])
 
 
